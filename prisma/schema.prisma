@@ -1,5 +1,5 @@
 datasource db {
-  provider = "postgresql" // or sqlite/mysql depending on what you used
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
@@ -8,7 +8,7 @@ generator client {
 }
 
 model Product {
-  id        String   @id @default(uuid())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   category  String
   price     Float
@@ -18,7 +18,7 @@ model Product {
 }
 
 model Order {
-  id           String   @id @default(uuid())
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   customerName String
   total        Float
   status       String   @default("Processing 🌸")
