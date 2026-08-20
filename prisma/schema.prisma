@@ -1,0 +1,26 @@
+datasource db {
+  provider = "postgresql" // or sqlite/mysql depending on what you used
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+  id        String   @id @default(uuid())
+  name      String
+  category  String
+  price     Float
+  stock     Int
+  image     String
+  createdAt DateTime @default(now())
+}
+
+model Order {
+  id           String   @id @default(uuid())
+  customerName String
+  total        Float
+  status       String   @default("Processing 🌸")
+  createdAt    DateTime @default(now())
+}
