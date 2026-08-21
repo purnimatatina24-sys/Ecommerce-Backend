@@ -24,3 +24,12 @@ model Order {
   status       String   @default("Processing 🌸")
   createdAt    DateTime @default(now())
 }
+
+model Review {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  product  String   @default("Store Item")
+  customer String
+  rating   String
+  comment  String
+  date     String
+}
